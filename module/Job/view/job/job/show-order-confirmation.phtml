@@ -1,0 +1,48 @@
+<?php
+    $title = 'Order Confirmation Page';
+    $this->headTitle($title);  
+?>
+<div class="col-md-6">
+    Order Id# <?= $this->jobOrderId ?>
+</div>
+<div class="col-md-6">
+    Ship to:<br>
+    <?= $this->jobOrder->shipping_name ?><br>
+    <?= $this->jobOrder->shipping_address1 ?><br>
+    <?= $this->jobOrder->shipping_city . ', ' . $this->jobOrder->shipping_state?><br>
+    <?= $this->jobOrder->shipping_country ?><br>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>&nbsp;<th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <?php 
+                foreach ($jobItems as $jobItem) {
+                    echo '<tr>' . 
+                        '<td><img src="' . $this->basePath() . $jobItem['p.product_thumbnail'] . '"></td>' .
+                        '<td>' . $jobItem['p.product_name'] . '<br>' .
+                        $jobItem['p.product_desc'] . '<br>' .
+                        '$ ' . $jobItem['p.unit_price'] . ' each</td>' . 
+                        '<td>&nbsp;</td>' .
+                        '<td>' . $jobItem['qty'] . '</td>' .
+                        '<td>$ ' . $jobItem['price'] . '</td>' .
+                    '</tr>';
+                }
+            ?>
+        </tr>
+    </tbody>
+</table>
+<?=
+    'Subtotal: $' . $this->jobOrder->sub_total . '<br>' . 
+    'Shipping Total: $' . $this->jobOrder->shipping_total . '<br>' .
+    'Grand Total: $' . $this->jobOrder->total_amount . '<br>' .
+    '<a href="' . $this->url('product') . '"><button class="btn btn-default">Continue Shopping</button></a>';
+?>
+

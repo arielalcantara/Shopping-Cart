@@ -1,0 +1,18 @@
+<?php
+    $title = 'Home';
+    $this->headTitle($title);  
+?>
+<h1>Products</h1>
+<?php
+    if (!is_array($this->params['error'])) {
+        echo $this->params['error'] . '<br>';
+    }
+?>
+<table class="table">
+    <?php foreach ($this->products as $product) { ?>
+        <tr>
+            <td><a href="<?= $this->url('product', ['action' => 'showproduct', 'id' => $product->product_id]) ?>">
+                <img src="<?= $this->escapeHtml($product->product_thumbnail) ?>"></a></td>
+        </tr>
+    <?php } ?>
+</table>

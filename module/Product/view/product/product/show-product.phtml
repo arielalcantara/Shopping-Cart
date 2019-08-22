@@ -1,0 +1,33 @@
+<?php
+    $title = $this->product->product_name;
+    $this->headTitle($title);  
+?>
+<div style="float: left">
+    <img src="<?= $this->product->product_image ?>">
+</div>
+<div style="float: right">
+        Product Name: <?= $this->product->product_name ?><br>  
+        Product Description: <?= $this->product->product_desc ?><br>
+        Unit Price: $<span id="unit-price"><?= $this->product->price ?></span><br>
+        Stock Quantity: <?= $this->product->stock_qty . ' units left'?><br>
+        <form action="<?= $this->url('cart', ['action' => 'additemtocart']); ?>" method="POST">
+            <input type="hidden" name="product_id" value="<?= $this->product->product_id ?>">
+            Quantity: &nbsp;<input type="number" name="qty" id="qty" onkeyup="calculatePrice()" onchange="calculatePrice()" value=1 min=1 max="<?= $this->product->stock_qty ?>"><br>
+            Price: $<span id="price"><?= $this->product->price ?></span><br>
+            <br><button type="submit">Add to Cart</button>
+        </form>             
+</div>
+<div style="clear: both">
+</div>
+<script>
+function calculatePrice() {
+    var unitPrice = document.getElementById('unit-price').innerHTML;
+    var qty = document.getElementById('qty').value;
+    var price = parseFloat(unitPrice) * parseFloat(qty);
+    price = price.toFixed(2);
+
+    if (!isNaN(price)) {
+        return document.getElementById('price').innerHTML = price;
+    }
+} 
+</script>

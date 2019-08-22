@@ -1,0 +1,99 @@
+<?php
+    $title = 'Shipping';
+    $this->headTitle($title);  
+?>
+<h1>Shipping</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md">
+            <form action="<?= $this->url('shipping', ['action' => 'submitshippingdetails']); ?>" method="POST">
+                <div class="form-group">
+                    Name: <input class="form-control" type="text" name="shipping_name">
+                    <?php
+                        if ($this->params['error']['shipping_name']) {
+                            $error = $this->params['error']['shipping_name'];
+                            $firstKey = array_keys($error)[0];
+                            if ($firstKey) {
+                                echo $error[$firstKey] . '<br>';
+                            }
+                        }
+                    ?>
+                    Address 1: <input class="form-control" type="text" name="shipping_address1">
+                    <?php
+                        if ($this->params['error']['shipping_address1']) {
+                            $error = $this->params['error']['shipping_address1'];
+                            $firstKey = array_keys($error)[0];
+                            if ($firstKey) {
+                                echo $error[$firstKey] . '<br>';
+                            }
+                        }
+                    ?>
+                    Address 2: <input class="form-control" type="text" name="shipping_address2">
+                    <?php
+                        if ($this->params['error']['shipping_address2']) {
+                            $error = $this->params['error']['shipping_address2'];
+                            $firstKey = array_keys($error)[0];
+                            if ($firstKey) {
+                                echo $error[$firstKey] . '<br>';
+                            }
+                        }
+                    ?>
+                    Address 3: <input class="form-control" type="text" name="shipping_address3">
+                    <?php
+                        if ($this->params['error']['shipping_address3']) {
+                            $error = $this->params['error']['shipping_address3'];
+                            $firstKey = array_keys($error)[0];
+                            if ($firstKey) {
+                                echo $error[$firstKey] . '<br>';
+                            }
+                        }
+                    ?>
+                    City: <input class="form-control" type="text" name="shipping_city">
+                    <?php
+                        if ($this->params['error']['shipping_city']) {
+                            $error = $this->params['error']['shipping_city'];
+                            $firstKey = array_keys($error)[0];
+                            if ($firstKey) {
+                                echo $error[$firstKey] . '<br>';
+                            }
+                        }
+                    ?>
+                    State: <input class="form-control" type="text" name="shipping_state">
+                    <?php
+                        if ($this->params['error']['shipping_state']) {
+                            $error = $this->params['error']['shipping_state'];
+                            $firstKey = array_keys($error)[0];
+                            if ($firstKey) {
+                                echo $error[$firstKey] . '<br>';
+                            }
+                        }
+                    ?>
+                    Country: <input class="form-control" type="text" name="shipping_country">
+                    <?php
+                        if ($this->params['error']['shipping_country']) {
+                            $error = $this->params['error']['shipping_country'];
+                            $firstKey = array_keys($error)[0];
+                            if ($firstKey) {
+                                echo $error[$firstKey] . '<br>';
+                            }
+                        }
+                    ?>
+                    <div class="radio">
+                        <label><input type="radio" name="shipping_method" 
+                            value="Ground" checked>Ground Shipping</label>
+                        $<?= $this->shippingTotals['Ground'] . '<br>'; ?>
+                        <label><input type="radio" name="shipping_method" 
+                            value="Expedited">Expedited Shipping</label>
+                        $<?= $this->shippingTotals['Expedited']  . '<br>'; ?>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-default">Continue</button>
+                <?php
+                    if (!is_array($this->params['error'])) {
+                        echo $this->params['error'] . '<br>';
+                    }
+                ?>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,117 @@
+<?php
+    $title = 'Login/Register';
+    $this->headTitle($title);  
+?>
+<h1>Login/Register</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Login</h2>
+            <form action="<?= $this->url('customer', ['action' => 'login']); ?>" method="POST">
+                <div class="form-group">
+                    <input class="form-control" type="hidden" name="url" value="<?= $this->from ?>">
+                    E-mail Address: <input class="form-control" type="text" name="email">
+                    <?php
+                        if ($this->params['loginError']['email']) {
+                            $error = $this->params['loginError']['email'];
+                            $firstKey = array_keys($error)[0];
+                            if ($firstKey) {
+                                echo $error[$firstKey] . '<br>';
+                            }
+                        }
+                    ?>
+                    Password: <input class="form-control" type="password" name="password">
+                    <?php
+                        if ($this->params['loginError']['password']) {
+                            $error = $this->params['loginError']['password'];
+                            $firstKey = array_keys($error)[0];
+                            if ($firstKey) {
+                                echo $error[$firstKey] . '<br>';
+                            }
+                        }
+                    ?>
+                </div>
+                <button type="submit" class="btn btn-default">Login</button>
+                <?php
+                    if (!is_array($this->params['loginError'])) {
+                        echo $this->params['loginError'] . '<br>';
+                    }
+                ?>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h2>Register</h2>
+            <form action="<?= $this->url('customer', ['action' => 'register']); ?>" method="POST">
+                <div class="form-group">
+                    <input class="form-control" type="hidden" name="url" value="<?= $this->from ?>">
+                    E-mail Address: <input class="form-control" type="text" name="email">
+                    <?php
+                        if ($this->params['registrationError']['email']) {
+                            $error = $this->params['registrationError']['email'];
+                            $firstKey = array_keys($error)[0];
+                            if ($firstKey) {
+                                echo $error[$firstKey] . '<br>';
+                            }
+                        }
+                    ?>
+                    Password: <input class="form-control" type="password" name="password">
+                    <?php
+                        if ($this->params['registrationError']['password']) {
+                            $error = $this->params['registrationError']['password'];
+                            $firstKey = array_keys($error)[0];
+                            if ($firstKey) {
+                                echo $error[$firstKey] . '<br>';
+                            }
+                        }
+                    ?>
+                    Confirm Password: <input class="form-control" type="password" name="confirm_password">
+                    <?php
+                        if ($this->params['registrationError']['confirm_password']) {
+                            $error = $this->params['registrationError']['confirm_password'];
+                            $firstKey = array_keys($error)[0];
+                            if ($firstKey) {
+                                echo $error[$firstKey] . '<br>';
+                            }
+                        }
+                    ?>
+                    Company Name (optional): <input class="form-control" type="text" name="company_name">
+                    <?php
+                        if ($this->params['registrationError']['company_name']) {
+                            $error = $this->params['registrationError']['company_name'];
+                            $firstKey = array_keys($error)[0];
+                            if ($firstKey) {
+                                echo $error[$firstKey] . '<br>';
+                            }
+                        }
+                    ?>
+                    First Name: <input class="form-control" type="text" name="first_name">
+                    <?php
+                        if ($this->params['registrationError']['first_name']) {
+                            $error = $this->params['registrationError']['first_name'];
+                            $firstKey = array_keys($error)[0];
+                            if ($firstKey) {
+                                echo $error[$firstKey] . '<br>';
+                            }
+                        }
+                    ?>
+                    Last Name: <input class="form-control" type="text" name="last_name">
+                    <?php
+                        if ($this->params['registrationError']['last_name']) {
+                            $error = $this->params['registrationError']['last_name'];
+                            $firstKey = array_keys($error)[0];
+                            if ($firstKey) {
+                                echo $error[$firstKey] . '<br>';
+                            }
+                        }
+                    ?>
+                </div>
+                <?php
+                    if (!is_array($this->params['registrationError'])) {
+                        echo $this->params['registrationError'] . '<br>';
+                    }
+                ?>
+                <button type="submit" class="btn btn-default">Register</button>
+            </form>
+        </div>
+    </div>
+</div>

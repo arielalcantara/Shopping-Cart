@@ -1,0 +1,42 @@
+<?php
+    $title = 'Payment Page';
+    $this->headTitle($title);  
+?>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>&nbsp;<th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <?php 
+                foreach ($cartItems as $cartItem) {
+                    echo '<tr>' . 
+                        '<td><img src="' . $this->basePath() . $cartItem['p.product_thumbnail'] . '"></td>' .
+                        '<td>' . $cartItem['p.product_name'] . '<br>' .
+                        $cartItem['p.product_desc'] . '<br>' .
+                        '$ ' . $cartItem['p.unit_price'] . ' each</td>' . 
+                        '<td>&nbsp;</td>' .
+                        '<td>' . $cartItem['qty'] . '</td>' .
+                        '<td>$ ' . $cartItem['price'] . '</td>' .
+                    '</tr>';
+                }
+            ?>
+        </tr>
+    </tbody>
+</table>
+<?php
+    if (!empty($this->cartTotals)) {
+        echo 'Subtotal: $' . $this->cartTotals['sub_total'] . '<br>' . 
+        'Shipping Total: $' . $this->cartTotals['shipping_total'] . '<br>' .
+        'Grand Total: $' . $this->cartTotals['total_amount'] . '<br>' .
+        '<a href="' . $this->url('payment', ['action' => 'confirmpayment']) . '"><button class="btn btn-default">Checkout</button></a>';
+    } else {
+        echo '<p>No Items in Cart</p>';
+    }
+?>
+
